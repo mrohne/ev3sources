@@ -1,0 +1,28 @@
+#!/usr/bin/env expect
+
+set timeout -1
+spawn ./arm-2009q1-203-arm-none-linux-gnueabi.bin -i console
+expect {
+    "PRESS <ENTER> TO CONTINUE:" { send "\n"; exp_continue; }
+    "DO YOU ACCEPT THE TERMS OF THIS LICENSE AGREEMENT? (Y/N):" { send "Y\n"; }
+}
+expect {
+    "ENTER THE NUMBER FOR THE INSTALL SET, OR PRESS <ENTER> TO ACCEPT THE DEFAULT" { send "1\n"; }
+}
+expect {
+    "ENTER AN ABSOLUTE PATH, OR PRESS <ENTER> TO ACCEPT THE DEFAULT" { send "/local/CodeSourcery\n"; }
+}
+expect {    
+    "IS THIS CORRECT? (Y/N)" { send "Y\n"; }
+}
+expect {
+    "ENTER THE NUMBER OF AN OPTION ABOVE, OR PRESS <ENTER> TO ACCEPT THE DEFAULT" { send "4\n"; }
+}
+expect {
+    "PRESS <ENTER> TO CONTINUE:" { send "\n"; exp_continue; }
+    "PRESS <ENTER> TO INSTALL:" { send "Y\n"; }
+}
+expect {
+    "PRESS <ENTER> TO ACCEPT THE FOLLOWING (Exit):" { send "\n"; }
+}
+expect eof
